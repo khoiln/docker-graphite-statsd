@@ -1,4 +1,4 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/khoiln/graphite-statsd-http.svg?style=flat)](https://hub.docker.com/r/khoiln/graphite-statsd-http/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/khoiln/docker-graphite-statsd.svg?style=flat)](https://hub.docker.com/r/khoiln/docker-graphite-statsd/)
 
 # Docker Image for Graphite & Statsd with statsd-http-interface
 
@@ -19,7 +19,7 @@ docker run -d\
  -p 8125:8125/udp\
  -p 8126:8126\
  -p 8127:8127\
- khoiln/graphite-statsd-http
+ khoiln/docker-graphite-statsd
 ```
 
 This starts a Docker container named: **graphite**
@@ -149,7 +149,7 @@ docker run -d\
  -v /path/to/graphite/configs:/opt/graphite/conf\
  -v /path/to/graphite/data:/opt/graphite/storage\
  -v /path/to/statsd:/opt/statsd\
- hopsoft/graphite-statsd
+ khoiln/docker-graphite-statsd
 ```
 
 **Note**: The container will initialize properly if you mount empty volumes at
@@ -171,7 +171,7 @@ docker run -d\
  -p 8127:8127\
  -e "MEMCACHE_HOST=127.0.0.1:11211"\  # Memcached host. Separate by comma more than one servers.
  -e "CACHE_DURATION=60"\              # in seconds
- khoiln/graphite-statsd-http
+ khoiln/docker-graphite-statsd
 ```
 
 Also, you can specify more than one memcached server, using commas:
@@ -191,5 +191,5 @@ Also, you can specify more than one memcached server, using commas:
 
 Build the image yourself.
 
-1. `git clone https://github.com/khoiln/graphite-statsd-http.git`
-1. `docker build -t khoiln/graphite-statsd-http .`
+1. `git clone https://github.com/khoiln/docker-graphite-statsd.git`
+1. `docker build -t khoiln/docker-graphite-statsd .`
