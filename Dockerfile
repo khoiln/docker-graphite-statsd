@@ -55,8 +55,7 @@ ADD conf/opt/statsd/config.js /opt/statsd/config.js
 
 # install statsd-http-interface
 RUN git clone https://github.com/msiebuhr/statsd-http-interface /usr/local/src/statsd-http-interface
-WORKDIR /usr/local/src/statsd-http-interface
-ADD ./index.js /opt/statsd/servers/statsd-http-interface.js
+ADD /usr/local/src/statsd-http-interface/index.js /opt/statsd/servers/statsd-http-interface.js
 
 # config nginx
 RUN rm /etc/nginx/sites-enabled/default
