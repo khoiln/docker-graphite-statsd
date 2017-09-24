@@ -42,7 +42,7 @@ Host | Container | Service
 2004 |      2004 | [carbon receiver - pickle](http://graphite.readthedocs.io/en/latest/feeding-carbon.html#the-pickle-protocol)
 2023 |      2023 | [carbon aggregator - plaintext](http://graphite.readthedocs.io/en/latest/carbon-daemons.html#carbon-aggregator-py)
 2024 |      2024 | [carbon aggregator - pickle](http://graphite.readthedocs.io/en/latest/carbon-daemons.html#carbon-aggregator-py)
-8125 |      8125 | [statsd](https://github.com/etsy/statsd/blob/master/docs/server.md)
+8125 |      8125 | [statsd](https://github.com/etsy/statsd/blob/master/docs/server.md) (Disabled in favor of statsd-http-interface)
 8126 |      8126 | [statsd admin](https://github.com/etsy/statsd/blob/v0.7.2/docs/admin_interface.md)
 8127 |      8127 | [statsd-http-interface](https://github.com/msiebuhr/statsd-http-interface)
 
@@ -72,7 +72,7 @@ Built using [Phusion's base image](https://github.com/phusion/baseimage-docker).
 Let's fake some stats with a random counter to prove things are working.
 
 ```sh
-while true; do echo -n "example:$((RANDOM % 100))|c" | nc -w 1 -u 127.0.0.1 8125; done
+while true; do echo -n "example:$((RANDOM % 100))|c" | curl 127.0.0.1:8127 --data-binary @- --header 'token: SECRET'; done
 ```
 
 ### Visualize the Data
@@ -168,6 +168,7 @@ docker run -d\
  -p 2023-2024:2023-2024\
  -p 8125:8125/udp\
  -p 8126:8126\
+ -p 8127:8127\
  -e "MEMCACHE_HOST=127.0.0.1:11211"\  # Memcached host. Separate by comma more than one servers.
  -e "CACHE_DURATION=60"\              # in seconds
  khoiln/graphite-statsd-http
