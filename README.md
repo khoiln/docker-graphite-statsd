@@ -4,7 +4,7 @@
 
 # Docker Image for Graphite & Statsd
 
-## Get Graphite & Statsd running instantly
+## Get Graphite & Statsd with statsd-http-interface running instantly
 
 Graphite & Statsd can be complex to setup.
 This image will have you running & collecting stats in just a few minutes.
@@ -20,6 +20,7 @@ docker run -d\
  -p 2023-2024:2023-2024\
  -p 8125:8125/udp\
  -p 8126:8126\
+ -p 8127:8127\
  hopsoft/graphite-statsd
 ```
 
@@ -45,6 +46,7 @@ Host | Container | Service
 2024 |      2024 | [carbon aggregator - pickle](http://graphite.readthedocs.io/en/latest/carbon-daemons.html#carbon-aggregator-py)
 8125 |      8125 | [statsd](https://github.com/etsy/statsd/blob/master/docs/server.md)
 8126 |      8126 | [statsd admin](https://github.com/etsy/statsd/blob/v0.7.2/docs/admin_interface.md)
+8127 |      8127 | [statsd-http-interface](https://github.com/msiebuhr/statsd-http-interface)
 
 
 ### Mounted Volumes

@@ -53,6 +53,11 @@ RUN python ./setup.py install
 RUN git clone -b v0.7.2 https://github.com/etsy/statsd.git /opt/statsd
 ADD conf/opt/statsd/config.js /opt/statsd/config.js
 
+# install statsd-http-interface
+RUN git clone https://github.com/msiebuhr/statsd-http-interface /usr/local/src/statsd-http-interface
+WORKDIR /usr/local/src/statsd-http-interface
+ADD ./index.js /opt/statsd/servers/statsd-http-interface.js
+
 # config nginx
 RUN rm /etc/nginx/sites-enabled/default
 ADD conf/etc/nginx/nginx.conf /etc/nginx/nginx.conf
@@ -82,7 +87,7 @@ RUN apt-get clean\
  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # defaults
-EXPOSE 80 2003-2004 2023-2024 8125/udp 8126
+EXPOSE 80 2003-2004 2023-2024 8125/udp 8126 8127
 VOLUME ["/opt/graphite/conf", "/opt/graphite/storage", "/etc/nginx", "/opt/statsd", "/etc/logrotate.d", "/var/log"]
 WORKDIR /
 ENV HOME /root
