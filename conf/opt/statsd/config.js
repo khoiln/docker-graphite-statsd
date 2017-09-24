@@ -5,10 +5,7 @@
   "flushInterval": 10000,
   "servers": [
   	{
-  		"server": "udp"
-  	},
-  	{
-  		"server": "statsd-http-interface",
+  		"server": "./servers/statsd-http-interface",
   		"port" : 8127,
   	},
   ],

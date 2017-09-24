@@ -1,4 +1,4 @@
-[![Docker Pulls](https://img.shields.io/docker/pulls/khoiln/docker-graphite-statsd.svg?style=flat)](https://hub.docker.com/r/khoiln/docker-graphite-statsd/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/khoiln/graphite-statsd-http.svg?style=flat)](https://hub.docker.com/r/khoiln/graphite-statsd-http/)
 
 # Docker Image for Graphite & Statsd with statsd-http-interface
 
@@ -19,7 +19,7 @@ docker run -d\
  -p 8125:8125/udp\
  -p 8126:8126\
  -p 8127:8127\
- khoiln/docker-graphite-statsd
+ khoiln/graphite-statsd-http
 ```
 
 This starts a Docker container named: **graphite**
@@ -170,7 +170,7 @@ docker run -d\
  -p 8126:8126\
  -e "MEMCACHE_HOST=127.0.0.1:11211"\  # Memcached host. Separate by comma more than one servers.
  -e "CACHE_DURATION=60"\              # in seconds
- khoiln/docker-graphite-statsd
+ khoiln/graphite-statsd-http
 ```
 
 Also, you can specify more than one memcached server, using commas:
@@ -190,5 +190,5 @@ Also, you can specify more than one memcached server, using commas:
 
 Build the image yourself.
 
-1. `git clone https://github.com/khoiln/docker-graphite-statsd.git`
-1. `docker build -t khoiln/docker-graphite-statsd .`
+1. `git clone https://github.com/khoiln/graphite-statsd-http.git`
+1. `docker build -t khoiln/graphite-statsd-http .`
